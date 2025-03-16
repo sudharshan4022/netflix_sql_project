@@ -39,7 +39,7 @@ group by type
 
 select 
     type,
-	rating
+    rating
 from
 (
 	select
