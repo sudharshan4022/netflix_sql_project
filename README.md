@@ -13,7 +13,7 @@
 
 The data this project is  sourced from the kaggle dataset:
 
-- ## Dataset link:##(https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
+## Dataset link:##(https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
  
 ## Schema
 
@@ -46,7 +46,7 @@ from netflix;
 
 -- 15 Business Problems & Solutions
 
-1. Count the number of Movies vs TV Shows
+###1. Count the number of Movies vs TV Shows
 
 select
     type,
@@ -54,7 +54,7 @@ select
 from netflix
 group by type
 
-2. Find the most common rating for movies and TV shows
+###2. Find the most common rating for movies and TV shows
 
 select 
     type,
@@ -72,7 +72,7 @@ from
 where
   ranking = 1
 
-3. List all movies released in a specific year (e.g., 2020)
+###3. List all movies released in a specific year (e.g., 2020)
 
 select  * from netflix
 where 
@@ -80,18 +80,18 @@ where
 	and
     release_year = '2020'
 
-4. Find the top 5 countries with the most content on Netflix
+###4. Find the top 5 countries with the most content on Netflix
 
 select
     --unnest(takes an array as input and transforms it into a table-like structure. Each element of the array becomes a separate row in the resulting output)
     unnest(string_to_array(country,',')) as new_country,
-	count(show_id) as total_content
+    count(show_id) as total_content
 from netflix
 group by 1
 order by 2 desc
 limit 5
 
-5. Identify the longest movie
+###5. Identify the longest movie
 
 select * from netflix
 where
@@ -99,7 +99,7 @@ where
    and
    duration =(select max(duration) from netflix)
 
-6. Find content added in the last 5 years
+###6. Find content added in the last 5 years
 
 select
     * 
@@ -109,23 +109,23 @@ where
 
 -- select current_date - interval '5 years'(this for know the last 5 years)
 	
-7. Find all the movies/TV shows by director 'Rajiv Chilaka'!
+###7. Find all the movies/TV shows by director 'Rajiv Chilaka'!
 
 select * from netflix
 where director like '%Rajiv Chilaka%'
 
-8. List all TV shows with more than 5 seasons
+###8. List all TV shows with more than 5 seasons
 
 select 
      *
-	 --split_part(duration, ' ',1) as sessions
+ --split_part(duration, ' ',1) as sessions
 from netflix
 where
     type = 'TV Show'
 	and
     split_part(duration, ' ', 1):: numeric > 5 
 
-9. Count the number of content items in each genre
+###9. Count the number of content items in each genre
 
 select 
      unnest (string_to_array(listed_in, ',')) as genre,
@@ -133,7 +133,7 @@ select
 from netflix
 group by 1
 
-10.Find each year and the average numbers of content release in India on netflix. 
+###10.Find each year and the average numbers of content release in India on netflix. 
 return top 5 year with highest avg content release!
 
 --total content 333/972
