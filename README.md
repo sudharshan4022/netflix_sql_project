@@ -33,7 +33,7 @@ create table  netflix
 	duration varchar(15),	
 	listed_in varchar(100),
 	description varchar(250)
-)
+);
 select * from netflix;
 
 select
